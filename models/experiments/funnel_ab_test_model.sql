@@ -1,3 +1,30 @@
+-- =============================================================================
+-- 📈 Funnel A/B Test Model: Created vs Sent vs Paid
+-- =============================================================================
+-- 🧪 Experiment Objective:
+-- Compare the performance of control vs variant groups through the invoicing funnel
+-- to determine if the new invoice template increases conversion to payment.
+--
+-- ✅ Stages Tracked:
+-- 1. Created Invoice
+-- 2. Sent Invoice
+-- 3. Got Paid
+--
+-- 🔍 Metrics Output:
+-- - Count of users per stage per group
+-- - Drop-off at each stage
+-- - Conversion rate from stage to stage
+--
+-- 💼 Business Value:
+-- Informs product/design teams whether the new invoice template drives better
+-- engagement and faster payment in FlexPay's invoicing flow.
+--
+-- 📂 File: models/experiments/funnel_ab_test_model.sql
+-- 📅 Last Updated: 2025-04-13
+-- 👤 Author: thatdataguy1786 (GitHub handle)
+-- =============================================================================
+
+
 WITH
 	BASE_FUNNEL AS (
 		SELECT
