@@ -11,8 +11,8 @@
 # (`scipy.stats.ttest_ind` in Python)
 
 # **Results**:
-# - T-Statistic: 0.571
-# - P-Value: 0.5679 → ❌ Not statistically significant
+# - T-Statistic: -1.085
+# - P-Value: 0.2782 → ❌ Not statistically significant
 
 # **Interpretation**:  
 # There is no statistically significant difference in completion time between the two invoice templates. We cannot claim Template B is faster.
