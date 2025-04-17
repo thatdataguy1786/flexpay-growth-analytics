@@ -3,25 +3,31 @@
 -- 🧪 A/B Test Analysis: Invoice Template Conversion Rate (FlexPay)
 -- ---------------------------------------------------------------
 -- Goal:
--- Evaluate whether Template B results in a higher invoice-to-payment conversion rate than Template A.
+## 📄 A/B Test – Conversion Rate by Invoice Template
 
--- Metric:
--- Conversion Rate = (# Paid Invoices) / (Total Invoices Sent)
--- Grouped by: invoice_template ('Template A' vs 'Template B')
+**Objective**:  
+Evaluate whether Template B led to a higher conversion rate (i.e. invoices getting paid) compared to Template A.
 
--- Tables Used:
--- - invoices: invoice_id, user_id, invoice_template, sent_date
--- - payments: invoice_id, payment_date
+**Metric Tracked**:  
+- Invoice-to-payment conversion rate  
+  (i.e. What % of invoices were paid for each template)
 
--- Logic:
--- 1. Filter to invoices using 'Template A' or 'Template B'
--- 2. Join with payments table to identify paid invoices
--- 3. Label each invoice as paid (1) or unpaid (0)
--- 4. Aggregate by template: total invoices, paid invoices, conversion rate
+**Statistical Test Used**:  
+✅ 2-Proportion Z-Test  
+(`statsmodels.stats.proportion.proportions_ztest` in Python)
 
--- Note:
--- You can export the output of this query and calculate Z-test p-value using Excel or Python (scipy.stats.proportions_ztest)
--- Optionally, calculate 95% Confidence Intervals in SQL if needed for visualization or dashboarding.
+**Results**:
+- Template classic Paid: 324 / 506
+- Template modern Paid: 319 / 512
+- P-Value: 0.5679 → ❌ Not statistically significant
+
+**Interpretation**:  
+There is no statistically significant difference in paid conversion between the two templates. We **cannot conclude** Template B improves payment likelihood.
+
+**Recommendation**:  
+- Gather more data or test additional variants
+- Consider evaluating other metrics (e.g. time to payment, satisfaction)
+
 
 WITH base_invoices AS (
   SELECT
