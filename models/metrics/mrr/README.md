@@ -1,4 +1,26 @@
 
+# 📊 Monthly Recurring Revenue (MRR) – Conceptual SCD-Based Model
+
+This SQL model calculates Monthly Recurring Revenue (MRR) using the **assumption** that the `subscriptions` table follows a **Slowly Changing Dimension (SCD Type 2)** structure. While the actual dataset uses a flat snapshot (one row per user), this model was written to reflect **best practices** in real-world SaaS analytics.
+
+---
+
+## ✅ Model Objective
+
+> To calculate total MRR, active users, and ARPU per month by joining a monthly calendar with time-aware subscription data and plan pricing rules.
+
+---
+
+## 🧠 Core Logic
+
+### Step-by-step breakdown:
+
+1. **`calendar_months`**  
+   Generates a list of monthly periods between `2024-01-01` and `2025-12-01` using `generate_series()`.
+
+2. **`active_user_months`**  
+   Performs a `CROSS JOIN` between calendar months and all subscription rows. Filters rows where the user was active in that month using:
+WHERE month_start BETWEEN s.start_date AND COALESCE(s.end_date, CURRENT_DATE)
 3. **`plan_prices`**  
 Simulates a lookup table for monthly plan pricing:
 - Free: $0
